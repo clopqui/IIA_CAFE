@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package iaa.conector;
+package iia.conector;
 
-import iaa.tareas.puertos.Puerto;
-import iaa.utilidades.Mensaje;
+import iia.tareas.puertos.Puerto;
+import iia.utilidades.Mensaje;
 
 /**
  *

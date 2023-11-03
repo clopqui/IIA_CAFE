@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package iaa.conector;
+package iia.conector;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,8 +13,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import iaa.tareas.puertos.PuertoEntrada;
-import iaa.utilidades.Mensaje;
+import iia.tareas.puertos.PuertoEntrada;
+import iia.utilidades.Mensaje;
 
 /**
  *

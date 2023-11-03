@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package iaa.tareas.transformadores;
+package iia.tareas.transformadores;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,8 +14,8 @@ import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import iaa.tareas.Tarea;
-import iaa.utilidades.Mensaje;
+import iia.tareas.Tarea;
+import iia.utilidades.Mensaje;
 
 /**
  *

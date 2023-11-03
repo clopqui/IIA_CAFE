@@ -2,30 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package iaa.tareas.puertos;
+package iia.conector;
 
-import iaa.conector.Conector;
-import org.w3c.dom.Document;
-import iaa.utilidades.Mensaje;
-import iaa.utilidades.Slot;
+import iia.utilidades.Mensaje;
 
 /**
  *
- * @author chris
+ * @author clopq
  */
-public class PuertoSolicitud extends Puerto{
-
-    public PuertoSolicitud(Conector conector) {
-        super(conector);
-    }
+public class ConectorSolicitud extends Conector{
+    
 
     @Override
-    protected void enviarInformacionMensaje(Mensaje m) {
+    public void enviarInformacionSalida(Mensaje m) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    protected void enviarInformacionDocumento(Document d) {
+    public void enviarInformacionEntrada(String xml) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -35,7 +29,7 @@ public class PuertoSolicitud extends Puerto{
     }
 
     @Override
-    public void setSlot(Slot s) {
+    public void detener() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

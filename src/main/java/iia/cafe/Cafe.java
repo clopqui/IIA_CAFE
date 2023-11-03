@@ -2,13 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package iaa.cafe;
+package iia.cafe;
 
-import iaa.conector.*;
-import iaa.tareas.*;
-import iaa.tareas.puertos.Puerto;
-import iaa.utilidades.Proceso;
-import static iaa.utilidades.Proceso.TAREAS.*;
+import iia.conector.Conector;
+import iia.conector.ConectorSalida;
+import iia.conector.ConectorEntrada;
+import iia.conector.ConectorSolicitud;
+import iia.tareas.Tarea;
+import iia.tareas.puertos.Puerto;
+import iia.utilidades.Proceso;
+import static iia.utilidades.Proceso.TAREAS.*;
 
 /**
  *

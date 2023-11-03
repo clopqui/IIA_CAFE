@@ -2,25 +2,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package iaa.utilidades;
+package iia.utilidades;
 
-import iaa.tareas.puertos.PuertoEntrada;
-import iaa.tareas.puertos.PuertoSalida;
-import iaa.tareas.puertos.Puerto;
-import iaa.tareas.puertos.PuertoSolicitud;
-import iaa.conector.Conector;
+import iia.tareas.puertos.PuertoEntrada;
+import iia.tareas.puertos.PuertoSalida;
+import iia.tareas.puertos.Puerto;
+import iia.tareas.puertos.PuertoSolicitud;
+import iia.conector.Conector;
 import java.util.ArrayList;
 import java.util.List;
-import iaa.tareas.Tarea;
-import iaa.tareas.enrutadores.Correlator;
-import iaa.tareas.enrutadores.Distributor;
-import iaa.tareas.enrutadores.Merger;
-import iaa.tareas.enrutadores.Replicator;
-import iaa.tareas.modificadores.Context_enricher;
-import iaa.tareas.modificadores.Correlation_ID_Setter;
-import iaa.tareas.transformadores.Aggregator;
-import iaa.tareas.transformadores.Splitter;
-import iaa.tareas.transformadores.Translator;
+import iia.tareas.Tarea;
+import iia.tareas.enrutadores.Correlator;
+import iia.tareas.enrutadores.Distributor;
+import iia.tareas.enrutadores.Merger;
+import iia.tareas.enrutadores.Replicator;
+import iia.tareas.modificadores.Context_enricher;
+import iia.tareas.modificadores.Correlation_ID_Setter;
+import iia.tareas.transformadores.Aggregator;
+import iia.tareas.transformadores.Splitter;
+import iia.tareas.transformadores.Translator;
 
 /**
  *

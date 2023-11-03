@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package iaa.tareas.enrutadores;
+package iia.tareas.enrutadores;
 
 import org.w3c.dom.Document;
-import iaa.tareas.Tarea;
-import iaa.utilidades.Mensaje;
-import iaa.utilidades.Slot;
+import iia.tareas.Tarea;
+import iia.utilidades.Mensaje;
+import iia.utilidades.Slot;
 
 /**
  *
