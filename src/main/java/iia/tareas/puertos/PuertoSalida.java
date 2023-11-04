@@ -33,7 +33,7 @@ public class PuertoSalida extends Puerto {
      * @param entrada El slot de entrada que se establecerá para la comunicación.
      */
     @Override
-    public void setSlot(Slot entrada) {
+    public void setSlotEntrada(Slot entrada) {
         this.slotEntrada = entrada;
     }
 
@@ -68,5 +68,10 @@ public class PuertoSalida extends Puerto {
             });
             hilo.start();
         }
+    }
+
+    @Override
+    public void setSlotSalida(Slot s) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

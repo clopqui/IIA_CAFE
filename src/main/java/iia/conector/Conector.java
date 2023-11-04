@@ -6,6 +6,7 @@ package iia.conector;
 
 import iia.tareas.puertos.Puerto;
 import iia.utilidades.Mensaje;
+import org.w3c.dom.Document;
 
 /**
  *
@@ -43,6 +44,8 @@ public abstract class Conector {
      * @throws Exception Si se produce un error durante el envío de información.
      */
     public abstract void enviarInformacionEntrada(String xml) throws Exception;
+    
+    public abstract Document interaccionBD(Document documento);
 
     /**
      * Inicia el conector.

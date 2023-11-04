@@ -7,19 +7,31 @@ package iia.utilidades;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.util.UUID;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.w3c.dom.bootstrap.DOMImplementationRegistry;
 import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSException;
@@ -210,5 +222,39 @@ public class Mensaje {
         } catch (IOException | ClassCastException | ClassNotFoundException | IllegalAccessException | InstantiationException | ParserConfigurationException | DOMException | LSException | SAXException ex) {
             return null;
         }
+    }
+    
+    public static NodeList evaluarXpath(Document doc, String expresion) throws XPathExpressionException {
+        XPathFactory factory = XPathFactory.newInstance();
+        XPath xpath = factory.newXPath();
+        XPathExpression expr = xpath.compile(expresion);
+        return (NodeList) expr.evaluate(doc, javax.xml.xpath.XPathConstants.NODESET);
+    }
+    
+    public static Document rsAdoc(ResultSet rs) throws ParserConfigurationException, SQLException, XMLStreamException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc = builder.newDocument();
+
+        ResultSetMetaData rsmd = rs.getMetaData();
+        int colCount = rsmd.getColumnCount();
+
+        Element results = doc.createElement("Resultados");
+        doc.appendChild(results);
+
+        while (rs.next()) {
+            Element row = doc.createElement("Columnas");
+            results.appendChild(row);
+
+            for (int i = 1; i <= colCount; i++) {
+                String columnName = rsmd.getColumnName(i);
+                Object value = rs.getObject(i);
+
+                Element node = doc.createElement(columnName);
+                node.appendChild(doc.createTextNode(value.toString()));
+                row.appendChild(node);
+            }
+        }
+        return doc;
     }
 }

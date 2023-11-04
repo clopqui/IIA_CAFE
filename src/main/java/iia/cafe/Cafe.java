@@ -10,6 +10,7 @@ import iia.conector.ConectorEntrada;
 import iia.conector.ConectorSolicitud;
 import iia.tareas.Tarea;
 import iia.tareas.puertos.Puerto;
+import iia.utilidades.H2DB;
 import iia.utilidades.Proceso;
 import static iia.utilidades.Proceso.TAREAS.*;
 
@@ -25,12 +26,15 @@ public class Cafe {
      */
     public static void main(String[] args) throws InterruptedException {
         // TODO code application logic here
+        H2DB db = new H2DB();
+        db.crearBaseDatos();
+        
         Proceso p = new Proceso();
         
         Conector lector = new ConectorEntrada("Ruta del directorio");
         Conector escritor = new ConectorSalida("Ruta del directorio");
-        Conector frio = new ConectorSolicitud();
-        Conector calor = new ConectorSolicitud();
+        Conector frio = new ConectorSolicitud("barmanFrio", "barmanFrioPass");
+        Conector calor = new ConectorSolicitud("barbanCalor", "barmanCalorPass");
         
         Puerto entrada = p.crearPuerto(lector, Proceso.PUERTOS.ENTRADAS);
         Puerto salida = p.crearPuerto(escritor, Proceso.PUERTOS.SALIDAS);
@@ -80,5 +84,4 @@ public class Cafe {
         p.inicializar();
         
     }
-    
 }

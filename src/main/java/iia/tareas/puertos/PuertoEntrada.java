@@ -33,7 +33,7 @@ public class PuertoEntrada extends Puerto {
      * @param salida El slot de salida que se establecerá para la comunicación.
      */
     @Override
-    public void setSlot(Slot salida) {
+    public void setSlotSalida(Slot salida) {
         this.slotSalida = salida;
     }
 
@@ -61,6 +61,11 @@ public class PuertoEntrada extends Puerto {
     @Override
     public void iniciar() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setSlotEntrada(Slot s) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
 

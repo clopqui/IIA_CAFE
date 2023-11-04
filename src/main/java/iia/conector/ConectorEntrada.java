@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import iia.tareas.puertos.PuertoEntrada;
 import iia.utilidades.Mensaje;
+import org.w3c.dom.Document;
 
 /**
  *
@@ -99,5 +100,10 @@ public class ConectorEntrada extends Conector {
     @Override
     public void enviarInformacionSalida(Mensaje m) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Document interaccionBD(Document documento) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

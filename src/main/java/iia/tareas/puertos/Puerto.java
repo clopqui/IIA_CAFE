@@ -36,7 +36,9 @@ public abstract class Puerto extends Tarea {
      * Establece el slot asociado al puerto para la comunicación.
      * @param s El slot que se establecerá para la comunicación.
      */
-    public abstract void setSlot(Slot s);
+    public abstract void setSlotEntrada(Slot s);
+    
+    public abstract void setSlotSalida(Slot s);
 
     /**
      * Envía información en forma de mensaje a través del puerto.

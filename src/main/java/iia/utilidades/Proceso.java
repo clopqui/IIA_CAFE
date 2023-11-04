@@ -163,7 +163,7 @@ public class Proceso {
      */
     public void conectarSlots(Puerto p, Tarea t) {
         Slot slot = new Slot();
-        p.setSlot(slot);
+        p.setSlotSalida(slot);
         t.añadirEntrada(slot);
     }
 
@@ -186,7 +186,7 @@ public class Proceso {
     public void conectarSlots(Tarea t, Puerto p) {
         Slot slot = new Slot();
         t.añadirSalida(slot);
-        p.setSlot(slot);
+        p.setSlotEntrada(slot);
     }
 
     /**

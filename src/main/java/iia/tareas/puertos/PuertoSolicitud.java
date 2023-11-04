@@ -18,6 +18,21 @@ public class PuertoSolicitud extends Puerto{
     public PuertoSolicitud(Conector conector) {
         super(conector);
     }
+    
+    /**
+     * Establece el slot de entrada asociado al puerto de salida para la comunicación.
+     * @param entrada El slot de entrada que se establecerá para la comunicación.
+     */
+    @Override
+    public void setSlotEntrada(Slot entrada) {
+        this.slotEntrada = entrada;
+    }
+    
+    @Override
+    public void setSlotSalida(Slot salida) {
+        this.slotSalida = salida;
+    }
+    
 
     @Override
     protected void enviarInformacionMensaje(Mensaje m) {
@@ -31,12 +46,16 @@ public class PuertoSolicitud extends Puerto{
 
     @Override
     public void iniciar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        while(!slotEntrada.colaVacia()){
+            Mensaje m = slotEntrada.recuperarMensaje();
+            var hilo = new Thread(() -> {
+                Document respuestaBD = conector.interaccionBD(m.getCuerpo());
+                if(respuestaBD != null){
+                    m.setCuerpo(respuestaBD);
+                    slotSalida.pushMensaje(m);
+                }
+            });
+            hilo.start();
+        }
     }
-
-    @Override
-    public void setSlot(Slot s) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }
