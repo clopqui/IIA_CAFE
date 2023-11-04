@@ -12,7 +12,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import iia.tareas.Tarea;
 import iia.utilidades.Mensaje;
-import iia.utilidades.Slot;
+import iia.utilidades.Utilidades;
 
 /**
  *
@@ -67,7 +67,7 @@ public class Splitter extends Tarea {
         NodeList listaNodos = (NodeList) xpath.evaluate(xpathExpression, mensaje.getCuerpo(), XPathConstants.NODESET);
         Document[] partes = new Document[listaNodos.getLength()];
         for (int i = 0; i < listaNodos.getLength(); i++) {
-            partes[i] = Mensaje.nodoADocumento(listaNodos.item(i));
+            partes[i] = Utilidades.nodoADocumento(listaNodos.item(i));
         }
         return partes;
     }

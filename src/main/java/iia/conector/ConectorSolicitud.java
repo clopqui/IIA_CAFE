@@ -6,6 +6,7 @@ package iia.conector;
 
 import iia.utilidades.H2DB;
 import iia.utilidades.Mensaje;
+import iia.utilidades.Utilidades;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -30,10 +31,10 @@ public class ConectorSolicitud extends Conector{
     @Override
     public  Document interaccionBD(Document documento){
         try {
-            String sql = Mensaje.evaluarXpath(documento, "/sql").item(0).getTextContent();
+            String sql = Utilidades.evaluarXpath(documento, "/sql").item(0).getTextContent();
             Document respuesta;
             try (ResultSet resultado = bd.crearDeclaracion().executeQuery(sql)) {
-                respuesta = Mensaje.rsAdoc(resultado);
+                respuesta = Utilidades.rsAdoc(resultado);
             }
             return respuesta;
         } catch (XPathExpressionException | ParserConfigurationException | SQLException | XMLStreamException ex) {

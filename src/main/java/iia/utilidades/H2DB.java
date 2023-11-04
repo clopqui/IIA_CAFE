@@ -30,9 +30,9 @@ public class H2DB {
         try (Connection conexion = JdbcConnectionPool.create(url, "admin", "admin").getConnection();
             Statement declaracion = conexion.createStatement()) {
                 //Crear las tablas en la BD
-                String crearTablaSQL = "CREATE TABLE IF NOT EXISTS bebidas_frias (id INT AUTO_INCREMENT, nombre VARCHAR(255))";
+                String crearTablaSQL = "CREATE TABLE IF NOT EXISTS bebidas_frias (id INT AUTO_INCREMENT, name VARCHAR(255))";
                 declaracion.execute(crearTablaSQL);
-                crearTablaSQL = "CREATE TABLE IF NOT EXISTS bebidas_calientes (id INT AUTO_INCREMENT, nombre VARCHAR(255))";
+                crearTablaSQL = "CREATE TABLE IF NOT EXISTS bebidas_calientes (id INT AUTO_INCREMENT, name VARCHAR(255))";
                 declaracion.execute(crearTablaSQL);
                 
                 //Insertar datos en la BD
@@ -41,7 +41,7 @@ public class H2DB {
                 String[] bebidasFrias = {"coca-cola","tonica","guarana","cerveza"};
                 String[] bebidasCalientes = {"cafe","chocolate","te","tila"};
                 
-                String insertSQL = "INSERT INTO bebidas_frias (nombre) VALUES (?)";
+                String insertSQL = "INSERT INTO bebidas_frias (name) VALUES (?)";
                 
                 try (PreparedStatement prepararDeclaracion = conexion.prepareStatement(insertSQL)) {
                     
@@ -59,7 +59,7 @@ public class H2DB {
                     System.out.println("Se han insertado " + columnasAfectadas.length + " registros en bebidas frias.");
                 }
                 
-                insertSQL = "INSERT INTO bebidas_calientes (nombre) VALUES (?)";
+                insertSQL = "INSERT INTO bebidas_calientes (name) VALUES (?)";
                 
                 try (PreparedStatement prepararDeclaracion = conexion.prepareStatement(insertSQL)) {
                     
@@ -78,6 +78,7 @@ public class H2DB {
                 }
                 
         } catch (SQLException e) { 
+            e.printStackTrace();
         }
     }
     

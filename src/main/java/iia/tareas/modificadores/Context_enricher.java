@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import iia.tareas.Tarea;
 import iia.utilidades.Mensaje;
 import iia.utilidades.Slot;
+import iia.utilidades.Utilidades;
 
 /**
  *
@@ -37,7 +38,7 @@ public class Context_enricher extends Tarea {
             try {
                 Mensaje mentrada = entrada.recuperarMensaje();
                 Mensaje mentradaAñadida = entradaAñadida.recuperarMensaje();
-                mentrada.setCuerpo(Mensaje.juntarXML(mentrada.getCuerpo(), mentradaAñadida.getCuerpo()));
+                mentrada.setCuerpo(Utilidades.juntarXML(mentrada.getCuerpo(), mentradaAñadida.getCuerpo()));
                 salida.pushMensaje(mentrada);
             } catch (Exception ex) {
                 Logger.getLogger(Context_enricher.class.getName()).log(Level.SEVERE, null, ex);

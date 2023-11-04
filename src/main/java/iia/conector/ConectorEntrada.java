@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import iia.tareas.puertos.PuertoEntrada;
 import iia.utilidades.Mensaje;
+import iia.utilidades.Utilidades;
 import org.w3c.dom.Document;
 
 /**
@@ -89,7 +90,7 @@ public class ConectorEntrada extends Conector {
      */
     @Override
     public void enviarInformacionEntrada(String xml) throws Exception {
-        ((PuertoEntrada) puerto).enviarInformacionDocumento(Mensaje.XMLaDocumento(xml));
+        ((PuertoEntrada) puerto).enviarInformacionDocumento(Utilidades.XMLaDocumento(xml));
     }
 
     /**
