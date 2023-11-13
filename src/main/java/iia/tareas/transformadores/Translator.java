@@ -21,6 +21,7 @@ import org.xml.sax.SAXException;
 import iia.tareas.Tarea;
 import iia.utilidades.Mensaje;
 import iia.utilidades.Slot;
+import java.io.File;
 
 /**
  *
@@ -84,13 +85,15 @@ public class Translator extends Tarea {
 
             // Obtener la salida transformada como una cadena
             String transformedXML = outputWriter.toString();
-
+           
             // Analizar la cadena transformada en un Documento XML
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
 
+            ///Problema en la conversión a documento
             return builder.parse(new InputSource(new StringReader(transformedXML)));
-
+            
+            
         } catch (IOException | ParserConfigurationException | TransformerException | SAXException ex) {
             return null; 
         }
