@@ -50,9 +50,8 @@ public class Tareas_transformadores {
     }
 
     /**
-     * En este test se verifica que se agregan todos los elementos dispersos
+     * En este test se verifica que se agregan todos los distintos mensajes
      *
-     * Solo nos sirve para la realización de los pasos de manera secuencial
      */
     @Test
     public void testAggregator() {
@@ -72,11 +71,11 @@ public class Tareas_transformadores {
             entrada.pushMensaje(m1);
             entrada.pushMensaje(m2);
 
-            ///Preparamos el correlator con dos slots de entradas y dos de salida
+            ///Preparamos el aggregatos con dos slots de entradas y dos de salida
             aggregator.añadirEntrada(entrada);
             aggregator.añadirSalida(salida);
 
-            ///Iniciamos el correlator
+            ///Iniciamos el aggregator
             aggregator.iniciar();
 
             ///Verificamos los resultados
@@ -98,7 +97,7 @@ public class Tareas_transformadores {
 
     /**
      * En este test se verifica que los elementos se dividen a partir de la
-     * expresion Xpath
+     * expresion Xpath que se muestra al inicio del test
      *
      */
     @Test
@@ -108,8 +107,8 @@ public class Tareas_transformadores {
         Slot entrada = new Slot();
         Slot salida = new Slot();
 
-        ///Creamos dos mensajes y establecemos el mismo idCorrelacion 
         try {
+            ///Creamos un mensaje 
             File forder = new File(".\\ficheros\\test\\order1.xml");
             Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(forder);
             Mensaje m1 = new Mensaje(0, doc);      ///Mensaje que se correlaciona
@@ -117,11 +116,11 @@ public class Tareas_transformadores {
             ///Insertamos los mensajes en los slot
             entrada.pushMensaje(m1);
 
-            ///Preparamos el correlator con dos slots de entradas y dos de salida
+            ///Preparamos el splitter con dos slots de entradas y dos de salida
             splitter.añadirEntrada(entrada);
             splitter.añadirSalida(salida);
 
-            ///Iniciamos el correlator
+            ///Iniciamos el splitter
             splitter.iniciar();
 
             ///Verificamos los resultados
@@ -148,16 +147,28 @@ public class Tareas_transformadores {
     /**
      * En este test se verifica el funcionamiento de la tarea translator
      * Para ello se ha tomado el fichero de configuración entradaFrío para verificar su correcta conversión
+     * Además, de manera comentada se dejará el fichero para la realización de peticiones SQL.
+     * 
      */
     @Test
     public void testTranslator() {
+        ///Indexación de los ficheros de configuración
+        
+        String fileconfiguracion = "ficheros/configuracion/translator_entradaCaliente.xsl";
+        String fileResultado = ".\\ficheros\\test\\translatorResult.xml";
+        
+        //String fileconfiguracion ="ficheros/configuracion/translator_salidaFrio.xsl";
+        //String fileResultado = ".\\ficheros\\test\\translatorSQLResult.xml";
+        
         ///Creación de la tarea, los slot de entrada y salida y mensaje 
-        Tarea translator = new Translator(Utilidades.archivoXSLaString("ficheros/configuracion/translator_entradaCaliente.xslt"));
+        Tarea translator = new Translator(Utilidades.archivoXSLaString(fileconfiguracion));
         Slot entrada = new Slot();
         Slot salida = new Slot();
+        
 
         ///Creamos dos mensajes y establecemos el mismo idCorrelacion 
         try {
+            
             File forder = new File(".\\ficheros\\test\\drinkCold.xml");
             Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(forder);
             Mensaje m1 = new Mensaje(0, doc);      ///Mensaje que se traduce
@@ -176,7 +187,7 @@ public class Tareas_transformadores {
             ///Verificamos que se han pasado los mensajes de una cola a otra
             if (!salida.colaVacia() && entrada.colaVacia()) {
                 ///Mensaje resultante esperado
-                File fResult = new File(".\\ficheros\\test\\translatorResult.xml");
+                File fResult = new File(fileResultado);
                 Document doc2 = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(fResult);
                 Mensaje resultadoEsperado = new Mensaje(1,doc2);
                 

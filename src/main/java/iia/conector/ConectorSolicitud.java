@@ -43,21 +43,37 @@ public class ConectorSolicitud extends Conector{
         return null;
     }
     
+    /**
+     * Este método no se admite en esta implementación y arroja una excepción.
+     * @throws UnsupportedOperationException Si se intenta utilizar este método no admitido.
+     */
     @Override
     public void enviarInformacionSalida(Mensaje m) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    /**
+     * Este método no se admite en esta implementación y arroja una excepción.
+     * @throws UnsupportedOperationException Si se intenta utilizar este método no admitido.
+     */
     @Override
     public void enviarInformacionEntrada(String xml) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    /**
+     * Este método no se admite en esta implementación y arroja una excepción.
+     * @throws UnsupportedOperationException Si se intenta utilizar este método no admitido.
+     */
     @Override
     public void iniciar() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    /**
+     * Este método no se admite en esta implementación y arroja una excepción.
+     * @throws UnsupportedOperationException Si se intenta utilizar este método no admitido.
+     */
     @Override
     public void detener() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

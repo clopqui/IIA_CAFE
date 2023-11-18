@@ -80,7 +80,11 @@ public class ConectorSalida extends Conector {
     public void detener() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
+    /**
+     * Este método no se admite en esta implementación y arroja una excepción.
+     * @throws UnsupportedOperationException Si se intenta utilizar este método no admitido.
+     */
     @Override
     public Document interaccionBD(Document documento) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

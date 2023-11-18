@@ -103,6 +103,12 @@ public class ConectorEntrada extends Conector {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     * Este método no se admite en esta implementación y arroja una excepción.
+     * @param documento El documento que se envia para interaccionar con la base de datos
+     * @return devuelve un documento correspondiente
+     * @throws UnsupportedOperationException Si se intenta utilizar este método no admitido.
+     */
     @Override
     public Document interaccionBD(Document documento) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

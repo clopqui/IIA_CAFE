@@ -242,7 +242,7 @@ public class Tareas_Enrutadores {
     }
 
     /**
-     * En este test verificamos la tarea Merger
+     * En este test verificamos la tarea Replicator
      */
     @Test
     public void testReplicator() {

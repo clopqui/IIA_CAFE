@@ -48,12 +48,6 @@ public class Tareas_Modificadores {
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
-    
     /**
      * En este test se verifica que el Context_enricher funciona correctamente
      * Para ello se toma un pedido de una bebida fría y añadimos el estado de
