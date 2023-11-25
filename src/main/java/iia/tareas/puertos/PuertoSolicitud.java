@@ -50,11 +50,9 @@ public class PuertoSolicitud extends Puerto {
     public void iniciar() {
         while (!slotEntrada.colaVacia()) {
             Mensaje m = slotEntrada.recuperarMensaje();
-            System.out.println("Me envia " + m.getCadenaCuerpo());
             Document respuestaBD = conector.interaccionBD(m.getCuerpo());
             if (respuestaBD != null) {
                 m.setCuerpo(respuestaBD);
-                System.out.println("Obtiene esto " + m.getCadenaCuerpo());
                 slotSalida.pushMensaje(m);
             }
         }
