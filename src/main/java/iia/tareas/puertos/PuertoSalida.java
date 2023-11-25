@@ -63,10 +63,7 @@ public class PuertoSalida extends Puerto {
     public void iniciar() {
         while (!slotEntrada.colaVacia()) {
             final Mensaje m = slotEntrada.recuperarMensaje();
-            var hilo = new Thread(() -> {
-                enviarInformacionMensaje(m);
-            });
-            hilo.start();
+            enviarInformacionMensaje(m);
         }
     }
 

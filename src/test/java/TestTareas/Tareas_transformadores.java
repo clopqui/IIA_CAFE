@@ -145,31 +145,34 @@ public class Tareas_transformadores {
     }
 
     /**
-     * En este test se verifica el funcionamiento de la tarea translator
-     * Para ello se ha tomado el fichero de configuración entradaFrío para verificar su correcta conversión
-     * Además, de manera comentada se dejará el fichero para la realización de peticiones SQL.
-     * 
+     * En este test se verifica el funcionamiento de la tarea translator Para
+     * ello se ha tomado el fichero de configuración entradaFrío para verificar
+     * su correcta conversión Además, de manera comentada se dejará el fichero
+     * para la realización de peticiones SQL.
+     *
+     * Si quieres verificar los ficheros de entrada o salida tienes que
+     * modificar su configuración y resultado. Además del fichero que tiene que
+     * traducir
      */
     @Test
     public void testTranslator() {
         ///Indexación de los ficheros de configuración
-        
-        String fileconfiguracion = "ficheros/configuracion/translator_entradaCaliente.xsl";
-        String fileResultado = ".\\ficheros\\test\\translatorResult.xml";
-        
-        //String fileconfiguracion ="ficheros/configuracion/translator_salidaFrio.xsl";
+
+        //String fileconfiguracion = "ficheros/configuracion/translator_entradaFrio.xsl";
         //String fileResultado = ".\\ficheros\\test\\translatorSQLResult.xml";
-        
+        String fileconfiguracion = "ficheros/configuracion/translator_salidaFrio.xsl";
+        String fileResultado = ".\\ficheros\\test\\translatorResult.xml";
         ///Creación de la tarea, los slot de entrada y salida y mensaje 
         Tarea translator = new Translator(Utilidades.archivoXSLaString(fileconfiguracion));
         Slot entrada = new Slot();
         Slot salida = new Slot();
-        
 
         ///Creamos dos mensajes y establecemos el mismo idCorrelacion 
         try {
-            
-            File forder = new File(".\\ficheros\\test\\drinkCold.xml");
+
+            //File forder = new File(".\\ficheros\\test\\drinkCold.xml");
+            File forder = new File(".\\ficheros\\test\\drinkColdPostSolicitud.xml");
+
             Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(forder);
             Mensaje m1 = new Mensaje(0, doc);      ///Mensaje que se traduce
 
@@ -189,17 +192,16 @@ public class Tareas_transformadores {
                 ///Mensaje resultante esperado
                 File fResult = new File(fileResultado);
                 Document doc2 = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(fResult);
-                Mensaje resultadoEsperado = new Mensaje(1,doc2);
-                
+                Mensaje resultadoEsperado = new Mensaje(1, doc2);
+
                 ///Mensaje transformado
                 Mensaje resultado1 = salida.recuperarMensaje(); //Resultado obtenido
-                
 
                 System.out.println(resultadoEsperado.getCadenaCuerpo());
                 System.out.println(resultado1.getCadenaCuerpo());
-                
-                assertEquals(resultadoEsperado.getCadenaCuerpo().replaceAll("\\s+", ""),resultado1.getCadenaCuerpo().replaceAll("\\s+",""));
-                
+
+                assertEquals(resultadoEsperado.getCadenaCuerpo().replaceAll("\\s+", ""), resultado1.getCadenaCuerpo().replaceAll("\\s+", ""));
+
             } else {
                 fail();
             }

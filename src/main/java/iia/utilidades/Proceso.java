@@ -9,6 +9,8 @@ import iia.tareas.puertos.PuertoSalida;
 import iia.tareas.puertos.Puerto;
 import iia.tareas.puertos.PuertoSolicitud;
 import iia.conector.Conector;
+import iia.conector.ConectorEntrada;
+import iia.conector.ConectorSalida;
 import java.util.ArrayList;
 import java.util.List;
 import iia.tareas.Tarea;
@@ -21,15 +23,17 @@ import iia.tareas.modificadores.Correlation_ID_Setter;
 import iia.tareas.transformadores.Aggregator;
 import iia.tareas.transformadores.Splitter;
 import iia.tareas.transformadores.Translator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author chris
  */
-
 /**
- * La clase Proceso representa un conjunto de tareas y conectores.
- * Permite crear tareas, puertos y establecer conexiones entre ellos para definir la lógica del proceso.
+ * La clase Proceso representa un conjunto de tareas y conectores. Permite crear
+ * tareas, puertos y establecer conexiones entre ellos para definir la lógica
+ * del proceso.
  */
 public class Proceso {
 
@@ -40,20 +44,20 @@ public class Proceso {
 
     // Enumeraciones para los tipos de puertos y tareas
     public enum PUERTOS {
-        ENTRADAS,  // Puertos de entrada
-        SALIDAS,   // Puertos de salida
+        ENTRADAS, // Puertos de entrada
+        SALIDAS, // Puertos de salida
         SOLICITUD  // Puertos de solicitud
     }
 
     public enum TAREAS {
-        AGGREGATOR,               // Tarea Aggregator
-        CONTEXT_ENRICHER,         // Tarea Context_enricher
-        CORRELATOR,               // Tarea Correlator
-        CORRELATION_ID_SETTER,    // Tarea Correlation_ID_Setter
-        DISTRIBUTOR,              // Tarea Distributor
-        MERGER,                   // Tarea Merger
-        REPLICATOR,               // Tarea Replicator
-        SPLITTER,                 // Tarea Splitter
+        AGGREGATOR, // Tarea Aggregator
+        CONTEXT_ENRICHER, // Tarea Context_enricher
+        CORRELATOR, // Tarea Correlator
+        CORRELATION_ID_SETTER, // Tarea Correlation_ID_Setter
+        DISTRIBUTOR, // Tarea Distributor
+        MERGER, // Tarea Merger
+        REPLICATOR, // Tarea Replicator
+        SPLITTER, // Tarea Splitter
         TRANSLATOR                // Tarea Translator
     }
 
@@ -66,6 +70,7 @@ public class Proceso {
 
     /**
      * Añade una tarea a la lista de tareas del proceso.
+     *
      * @param t La tarea a añadir.
      */
     public void añadirTarea(Tarea t) {
@@ -74,6 +79,7 @@ public class Proceso {
 
     /**
      * Crea un puerto de un tipo específico y lo asocia a un conector.
+     *
      * @param conector El conector al que se asocia el puerto.
      * @param tipo El tipo de puerto a crear.
      * @return El puerto creado.
@@ -103,6 +109,7 @@ public class Proceso {
 
     /**
      * Crea una tarea de un tipo específico.
+     *
      * @param tipo El tipo de tarea a crear.
      * @return La tarea creada.
      */
@@ -112,6 +119,7 @@ public class Proceso {
 
     /**
      * Crea una tarea de un tipo específico con una configuración adicional.
+     *
      * @param tipo El tipo de tarea a crear.
      * @param configuracion La configuración adicional para la tarea.
      * @return La tarea creada.
@@ -158,6 +166,7 @@ public class Proceso {
 
     /**
      * Conecta un puerto a una tarea, estableciendo un Slot entre ellos.
+     *
      * @param p El puerto a conectar.
      * @param t La tarea a conectar.
      */
@@ -169,6 +178,7 @@ public class Proceso {
 
     /**
      * Conecta dos tareas, estableciendo un Slot entre ellas.
+     *
      * @param t1 La primera tarea a conectar.
      * @param t2 La segunda tarea a conectar.
      */
@@ -180,6 +190,7 @@ public class Proceso {
 
     /**
      * Conecta una tarea a un puerto, estableciendo un Slot entre ellos.
+     *
      * @param t La tarea a conectar.
      * @param p El puerto a conectar.
      */
@@ -190,15 +201,18 @@ public class Proceso {
     }
 
     /**
-     * Inicializa el proceso, creando hilos para las tareas y comenzando su ejecución.
-     * @throws InterruptedException Si se produce una interrupción durante la inicialización.
+     * Inicializa el proceso, creando hilos para las tareas y comenzando su
+     * ejecución.
+     *
+     * @throws InterruptedException Si se produce una interrupción durante la
+     * inicialización.
      */
-
     public void inicializar() throws InterruptedException {
         for (Tarea t : tareas) {
             Thread hilo = new Thread((Runnable) t);
             hilos.add(hilo);
             hilo.start();
+
         }
 
         for (Conector c : conectores) {
@@ -207,8 +221,11 @@ public class Proceso {
     }
 
     /**
-     * Detiene el proceso, interrumpiendo todos los hilos y deteniendo los conectores.
-     * @throws InterruptedException Si se produce una interrupción durante la detención.
+     * Detiene el proceso, interrumpiendo todos los hilos y deteniendo los
+     * conectores.
+     *
+     * @throws InterruptedException Si se produce una interrupción durante la
+     * detención.
      */
     public void parar() throws InterruptedException {
         for (Thread t : hilos) {
@@ -219,6 +236,30 @@ public class Proceso {
             c.detener();
         }
     }
-}
 
-    
+    /**
+     * Proceso experimental que nos realiza una única secuencia, de todos los
+     * elementos en el circuito integrado
+     */
+    public void inicializarSecuencial() {
+        for (Conector c : conectores) {
+            if (c instanceof ConectorEntrada) {
+                c.iniciar();    ///Solo se ejecuta una secuencia del conector de entrada
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Proceso.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                c.detener();
+            }
+        }
+
+        for (Tarea t : tareas) {
+            if (t instanceof PuertoEntrada) {} ///El puerto de entrada no tiene que hacer nada
+            else { ///Para el resto de los puertos
+                t.iniciar();    ///Iniciamos las tareas de manera secuencial, en el orden en el que han sido insertadas
+            }
+        }
+
+    }
+}

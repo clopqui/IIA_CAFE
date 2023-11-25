@@ -48,7 +48,7 @@ public class ConectorEntrada extends Conector {
     public void iniciar() {
         if (directorio != null && executorService == null) {
             executorService = Executors.newSingleThreadScheduledExecutor();
-            executorService.scheduleAtFixedRate(this::observarDirectorio, 0, 1, TimeUnit.SECONDS);
+            executorService.scheduleAtFixedRate(this::observarDirectorio, 0, 2, TimeUnit.SECONDS);      ///Se ha modificado el tiempo para que solo tome un fichero
         }
     }
     
@@ -74,6 +74,7 @@ public class ConectorEntrada extends Conector {
                     String contenido = new String(Files.readAllBytes(archivo.toPath()), StandardCharsets.UTF_8);
                     enviarInformacionEntrada(contenido);
                     Files.delete(archivo.toPath()); // Por si hace falta borrar las comandas
+                    break;  ///Salimos porque solo queremos que en cada barrida tome un único fichero
                 }
             }
         } catch (IOException ex) {

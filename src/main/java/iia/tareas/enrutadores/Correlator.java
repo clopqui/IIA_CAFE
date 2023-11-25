@@ -54,7 +54,6 @@ public class Correlator extends Tarea {
             while (iterEntradas2.hasNext()) {
                 Mensaje m = iterEntradas2.next();
                 UUID correlationId = m.getIDcorrelacion();
-                
                 List<Mensaje> lista = gruposMensajes.get(correlationId);
                 if (lista == null) {
                     lista = new ArrayList<>();

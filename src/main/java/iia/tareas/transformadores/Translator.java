@@ -20,8 +20,6 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import iia.tareas.Tarea;
 import iia.utilidades.Mensaje;
-import iia.utilidades.Slot;
-import java.io.File;
 
 /**
  *
@@ -53,7 +51,7 @@ public class Translator extends Tarea {
     @Override
     public void iniciar() {
         while (!this.entrada(0).colaVacia()) {
-            m = entrada(0).recuperarMensaje();
+            m = entrada(0).recuperarMensaje();           
             m.setCuerpo(traductor(m, condicion));
             salida(0).pushMensaje(m);
         }
@@ -69,7 +67,6 @@ public class Translator extends Tarea {
         try {
             // Crear un nuevo TransformerFactory
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
-
             // Crear las fuentes XSLT y XML a partir de las cadenas
             StreamSource xsltSource = new StreamSource(new StringReader(condicion));
             StreamSource xmlSource = new StreamSource(new StringReader(m.getCadenaCuerpo()));

@@ -19,7 +19,7 @@ import iia.utilidades.Slot;
  * a través de objetos Slot. Las tareas pueden recibir información a través de sus entradas y enviar información
  * a través de sus salidas.
  */
-abstract public class Tarea {
+abstract public class Tarea{
     private final List<Slot> entradas; // Lista de entradas de la tarea.
     private final List<Slot> salidas;  // Lista de salidas de la tarea.
     protected Slot slotEntrada;  // Slot de entrada de la tarea.

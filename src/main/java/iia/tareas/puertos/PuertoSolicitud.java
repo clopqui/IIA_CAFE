@@ -13,26 +13,28 @@ import iia.utilidades.Slot;
  *
  * @author chris
  */
-public class PuertoSolicitud extends Puerto{
+public class PuertoSolicitud extends Puerto {
 
     public PuertoSolicitud(Conector conector) {
         super(conector);
     }
-    
+
     /**
-     * Establece el slot de entrada asociado al puerto de salida para la comunicación.
-     * @param entrada El slot de entrada que se establecerá para la comunicación.
+     * Establece el slot de entrada asociado al puerto de salida para la
+     * comunicación.
+     *
+     * @param entrada El slot de entrada que se establecerá para la
+     * comunicación.
      */
     @Override
     public void setSlotEntrada(Slot entrada) {
         this.slotEntrada = entrada;
     }
-    
+
     @Override
     public void setSlotSalida(Slot salida) {
         this.slotSalida = salida;
     }
-    
 
     @Override
     protected void enviarInformacionMensaje(Mensaje m) {
@@ -46,16 +48,15 @@ public class PuertoSolicitud extends Puerto{
 
     @Override
     public void iniciar() {
-        while(!slotEntrada.colaVacia()){
+        while (!slotEntrada.colaVacia()) {
             Mensaje m = slotEntrada.recuperarMensaje();
-            var hilo = new Thread(() -> {
-                Document respuestaBD = conector.interaccionBD(m.getCuerpo());
-                if(respuestaBD != null){
-                    m.setCuerpo(respuestaBD);
-                    slotSalida.pushMensaje(m);
-                }
-            });
-            hilo.start();
+            System.out.println("Me envia " + m.getCadenaCuerpo());
+            Document respuestaBD = conector.interaccionBD(m.getCuerpo());
+            if (respuestaBD != null) {
+                m.setCuerpo(respuestaBD);
+                System.out.println("Obtiene esto " + m.getCadenaCuerpo());
+                slotSalida.pushMensaje(m);
+            }
         }
     }
 }

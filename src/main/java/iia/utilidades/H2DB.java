@@ -94,6 +94,12 @@ public class H2DB {
         }
     }
 
+    /**
+     * Nos permite crear un nuevo usuario a través del administrador otorgando unos permisos
+     * para su uso personalizado
+     * @param user usuario del nuevo "administrador" parcial
+     * @param password contraseña del nuevo "administrador" parcial
+     */
     private void CrearNuevoUsuario(String user, String password) {
             Connection conn = null;
             Statement stm = null;
@@ -104,7 +110,7 @@ public class H2DB {
             stm.executeUpdate("CREATE USER " + user + " PASSWORD \'" + password + "\' ADMIN" );
 
             // Otorgar privilegios al nuevo usuario (puedes ajustar los permisos según tus necesidades)
-            stm.executeUpdate("GRANT SELECT, INSERT, UPDATE, DELETE ON SCHEMA PUBLIC TO " + user);
+            stm.executeUpdate("GRANT SELECT ON SCHEMA PUBLIC TO " + user);
 
 
         } catch (SQLException e) {

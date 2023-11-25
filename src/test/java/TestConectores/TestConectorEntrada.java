@@ -49,7 +49,7 @@ public class TestConectorEntrada {
      * Verificar que tiene al menos un fichero para leer en el directorio seleccionado.
      *
      * Verifica que el conector de entrada funciona correctamente al coger una
-     * orden Para ello se usara el directorio TestComandasEntrada para coger las
+     * orden. Para ello se usara el directorio TestComandasEntrada para coger las
      * comandas.
      *
      *
